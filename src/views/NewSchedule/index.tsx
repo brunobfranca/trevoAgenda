@@ -1,5 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
 import {Header, Text, Button, Row, Divider} from '~components';
 import * as Modal from '~services/modal';
 import {Schedule as Schell} from '~modals';
