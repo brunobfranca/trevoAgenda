@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Modal} from '~components';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {ThemeProvider} from 'styled-components/native';
@@ -9,6 +10,8 @@ import {DefaultTheme} from './themes';
 import {persistor, store} from '~store';
 import RNBootSplash from 'react-native-bootsplash';
 import {Platform} from 'react-native';
+import {modalRef} from '~services/modal';
+import {Host} from 'react-native-portalize';
 
 const onBeforeLift = () => {
   // Waiting for the components to be mounted
@@ -24,9 +27,12 @@ export default function App() {
       <ThemeProvider theme={DefaultTheme}>
         <Provider store={store}>
           <PersistGate persistor={persistor}>
-            <NavigationContainer>
-              <Router />
-            </NavigationContainer>
+            <Host>
+              <NavigationContainer>
+                <Router />
+              </NavigationContainer>
+              <Modal ref={modalRef} />
+            </Host>
           </PersistGate>
         </Provider>
       </ThemeProvider>
