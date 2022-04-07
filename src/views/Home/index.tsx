@@ -1,5 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
 import {Text} from '~components';
 import {Header} from './components';
 import {useDispatch} from 'react-redux';

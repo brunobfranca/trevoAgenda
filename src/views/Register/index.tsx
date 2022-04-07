@@ -21,7 +21,7 @@ const Register = ({navigation}) => {
       <Formik
         initialValues={{email: '', password: '', name: '', cpf: ''}}
         onSubmit={values => submit(values)}>
-        {({handleChange, handleSubmit}) => (
+        {({handleSubmit}) => (
           <>
             <ScrollView>
               <Content>

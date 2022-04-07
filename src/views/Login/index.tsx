@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button, Separator, Text} from '~components';
 import {Formik} from 'formik';
 
@@ -11,8 +11,6 @@ import {
 } from './styles';
 
 const Login = ({navigation}) => {
-  const [data, setText] = useState('');
-
   const submit = values => {
     console.log(values);
   };
