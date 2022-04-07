@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "730811069678",
+    "project_id": "trevo-agenda",
+    "storage_bucket": "trevo-agenda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730811069678:android:6c8879cc8ee7243d456fff",
+        "android_client_info": {
+          "package_name": "com.trevoagenda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730811069678-0e499meg6drdhf40bikdeutmjglk7olc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTYg-Ma6eJhYcir9ATCN--Cr_aZ4Rqosc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730811069678-0e499meg6drdhf40bikdeutmjglk7olc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

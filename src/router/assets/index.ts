@@ -1,0 +1,10 @@
+export { default as Addresses } from './addresses.svg';
+export { default as Vouchers } from './vouchers.svg';
+export { default as Home } from './home.svg';
+export { default as Supporte } from './support.svg';
+export { default as Shopper } from './shopper.svg';
+export { default as Referral } from './referral.svg';
+export { default as Orders } from './orders.svg';
+export { default as Profile } from './profile.svg';
+export { default as Cards } from './cards.svg';
+export { default as Notifications } from './notifications.svg';
