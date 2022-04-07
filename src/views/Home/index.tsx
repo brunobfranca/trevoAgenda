@@ -1,13 +1,30 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
+import {Text} from '~components';
+import {Header} from './components';
+import {useDispatch} from 'react-redux';
+import {Creators} from '~store/reducers';
+import {Button, Container, Content} from './styles';
 
-// import { Container } from './styles';
+const Home = ({navigation}) => {
+  const dispatch = useDispatch();
 
-const Home = () => {
   return (
-    <View>
-      <Text>teste</Text>
-    </View>
+    <Container>
+      <Header
+        inverted
+        onPress={() => dispatch(Creators.logout.request({}))}
+        title="Home"
+      />
+      <Content>
+        <Button onPress={() => navigation.navigate('Schedule')}>
+          <Text size="extraLarge">Agendar</Text>
+        </Button>
+        <Button onPress={() => navigation.navigate('NewSchedule')}>
+          <Text size="extraLarge">Meus Agendamentos</Text>
+        </Button>
+      </Content>
+    </Container>
   );
 };
 
