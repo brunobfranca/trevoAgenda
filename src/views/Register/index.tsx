@@ -3,40 +3,35 @@ import {ScrollView} from 'react-native';
 import {Header, Input, Separator, Button, Text} from '~components';
 import {Formik} from 'formik';
 
-import {Container} from './styles';
+import {Container, Content} from './styles';
 
 const Register = ({navigation}) => {
-  console.log(navigation);
   const submit = values => {
     console.log(values);
   };
 
-  //   Nome
-  // CPF
-  // Inscrição Estadual
-  // Nome da Fazenda
-  // Municio da Fazenda
-  // Estado da Fazenda
   return (
     <Container>
       <Header onPress={() => navigation.goBack()} />
       <Formik
-        initialValues={{email: '', password: ''}}
+        initialValues={{email: '', password: '', name: '', cpf: ''}}
         onSubmit={values => submit(values)}>
         {({handleChange, handleSubmit}) => (
           <>
-            <Text size="large" bold color="primary">
-              Registro
-            </Text>
             <ScrollView>
-              <Input label="Nome" name="name" />
-              <Input label="CPF" name="cpf" />
-              <Input label="Nome" name="stateRegistration" />
-              <Input label="Email" name="email" />
-              <Input label="Senha" name="password" />
-              <Input label="Nome da Fazenda" name="farmName" />
-              <Input label="Municipio da Fazenda" name="cityFarmName" />
-              <Input label="Estado da Fazenda" name="stateFarmName" />
+              <Content>
+                <Text size="large" bold color="primary">
+                  Registro
+                </Text>
+                <Input label="Nome" name="name" />
+                <Input label="CPF" name="cpf" />
+                <Input label="Nome" name="stateRegistration" />
+                <Input label="Nome da Fazenda" name="farmName" />
+                <Input label="Municipio da Fazenda" name="cityFarmName" />
+                <Input label="Estado da Fazenda" name="stateFarmName" />
+                <Input label="Email" name="email" />
+                <Input label="Senha" name="password" />
+              </Content>
             </ScrollView>
             <Separator height="20" />
             <Button rect onPress={handleSubmit}>
