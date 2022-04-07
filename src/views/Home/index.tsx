@@ -16,10 +16,10 @@ const Home = ({navigation}) => {
         title="Home"
       />
       <Content>
-        <Button onPress={() => navigation.navigate('Schedule')}>
+        <Button onPress={() => navigation.navigate('NewSchedule')}>
           <Text size="extraLarge">Agendar</Text>
         </Button>
-        <Button onPress={() => navigation.navigate('NewSchedule')}>
+        <Button onPress={() => navigation.navigate('Schedule')}>
           <Text size="extraLarge">Meus Agendamentos</Text>
         </Button>
       </Content>
