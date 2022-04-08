@@ -2,16 +2,16 @@ import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as Views from '../views';
 
-const Auth = createNativeStackNavigator();
+const App = createNativeStackNavigator();
 
-function App() {
+function Component() {
   return (
-    <Auth.Navigator screenOptions={{headerShown: false}}>
-      <Auth.Screen name="Home" component={Views.Home} />
-      <Auth.Screen name="Schedule" component={Views.Schedule} />
-      <Auth.Screen name="NewSchedule" component={Views.NewSchedule} />
-    </Auth.Navigator>
+    <App.Navigator screenOptions={{headerShown: false}}>
+      <App.Screen name="Home" component={Views.Home} />
+      <App.Screen name="Schedule" component={Views.Schedule} />
+      <App.Screen name="NewSchedule" component={Views.NewSchedule} />
+    </App.Navigator>
   );
 }
 
-export default App;
+export default Component;

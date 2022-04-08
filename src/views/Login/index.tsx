@@ -1,5 +1,7 @@
 import React from 'react';
 import {Button, Separator, Text} from '~components';
+import {useDispatch} from 'react-redux';
+import {Creators} from '~store/reducers';
 import {Formik} from 'formik';
 
 import {
@@ -11,7 +13,10 @@ import {
 } from './styles';
 
 const Login = ({navigation}) => {
+  const dispatch = useDispatch();
+
   const submit = values => {
+    dispatch(Creators.user.get.success({response: values}));
     console.log(values);
   };
 
@@ -21,7 +26,7 @@ const Login = ({navigation}) => {
         <Logo source={require('./assets/trevo.jpeg')} />
       </LogoContainer>
       <Formik
-        initialValues={{email: '', password: ''}}
+        initialValues={{email: '', password: '', type: 1}}
         onSubmit={values => submit(values)}>
         {({handleChange, handleSubmit}) => (
           <>

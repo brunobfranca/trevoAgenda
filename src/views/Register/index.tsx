@@ -2,16 +2,11 @@ import React from 'react';
 import {ScrollView} from 'react-native';
 import {Header, Input, Separator, Button, Text} from '~components';
 import {Formik} from 'formik';
-import {useDispatch} from 'react-redux';
-import {Creators} from '~store/reducers';
 
 import {Container, Content} from './styles';
 
 const Register = ({navigation}) => {
-  const dispatch = useDispatch();
-
   const submit = values => {
-    dispatch(Creators.user.get.success({response: values}));
     console.log(values);
   };
 
