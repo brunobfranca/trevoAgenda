@@ -1,62 +1,56 @@
-import React, {useContext} from 'react';
-import {ModalTimeout} from '~services/utils';
-import {
-  CancelTouchArea,
-  CancelText,
-  Button,
-  Container,
-  Title,
-  Description,
-  Buttons,
-  Input,
-} from './styles';
+import React, {useContext, useState} from 'react';
+import {CancelTouchArea, CancelText, Container, Title, Input} from './styles';
 import {Store, IModal} from '~components/Modal';
-
-export interface IButton {
-  id: number | string;
-  onPress?: () => any;
-  title: string;
-}
-
+import {Text, Button} from '~components';
+import DatePicker from 'react-native-datepicker';
+import moment from 'moment';
 interface IDefaultModal {
   title: string;
-  buttons?: IButton[];
+  isTomorrow?: boolean;
   cancel?: boolean;
 }
 
-export const DynamicButtons = ({buttons}: {buttons: IButton[]}) => {
-  const {hide} = useContext<IModal>(Store);
-  return (
-    <Buttons>
-      {/* Dinamically generating buttons. Useful, as this is supposed to be a generic modal */}
-      {buttons.map((button: IButton, index) => (
-        <Button
-          {...button}
-          key={button.id}
-          last={index === buttons.length - 1}
-          onPress={async () => {
-            hide();
-            return button.onPress && ModalTimeout(button.onPress);
-          }}>
-          {button.title}
-        </Button>
-      ))}
-    </Buttons>
-  );
-};
-
 export default function Component({
   title,
-  buttons = [{id: 0, title: 'Ok'}],
+  isTomorrow,
   cancel = true,
 }: IDefaultModal) {
   const {close} = useContext<IModal>(Store);
-
+  const [date, setDate] = useState('');
   return (
     <Container>
       <Title>{title}</Title>
+      <Text size="large" color="primary">
+        Quantidade disponível: 80
+      </Text>
+      {!isTomorrow && (
+        <DatePicker
+          date={date}
+          mode="date"
+          placeholder="data inicial"
+          format="DD/MM/YYYY"
+          minDate={moment().subtract(10, 'years').format('DD/MM/YYYY')}
+          customStyles={{
+            dateIcon: {
+              position: 'absolute',
+              left: 0,
+              top: 4,
+              marginLeft: 0,
+            },
+            dateInput: {
+              marginLeft: 36,
+            },
+            // ... You can check the source to find the other keys.
+          }}
+          onDateChange={date => {
+            setDate(date);
+          }}
+        />
+      )}
       <Input label="Quantidade" />
-      <DynamicButtons buttons={buttons} />
+      <Button onPress={() => alert('chamada para possivel api')}>
+        Agendar
+      </Button>
       {cancel && (
         <CancelTouchArea onPress={close}>
           <CancelText>Cancelar</CancelText>

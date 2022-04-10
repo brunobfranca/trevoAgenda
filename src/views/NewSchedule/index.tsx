@@ -13,9 +13,6 @@ const Schedule = ({navigation}) => {
         onPress={() => navigation.goBack()}
         title="Novo Agendamento"
       />
-      <Text size="large" color="primary">
-        Quantidade disponível: 80
-      </Text>
       <Divider style={{height: 4, marginBottom: 10}} />
       <Text size="large" color="primary">
         Quando deseja agendar
@@ -26,7 +23,9 @@ const Schedule = ({navigation}) => {
           <Button
             rect
             style={{width: '40%'}}
-            onPress={() => Modal.show(() => <Schell title="Amanhã" />)}>
+            onPress={() =>
+              Modal.show(() => <Schell title="Amanhã" isTomorrow />)
+            }>
             Amanhã
           </Button>
           <Button
