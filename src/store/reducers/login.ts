@@ -15,9 +15,8 @@ export const Creators = createAsyncAction(
   Types.LOGIN_FAILED,
 )<
   {
-    provider: Providers;
     data?: {
-      email: string;
+      inscricao: string;
       password: string;
     };
   },

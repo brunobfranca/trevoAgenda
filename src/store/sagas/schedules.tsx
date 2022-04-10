@@ -25,7 +25,6 @@ function* addSchedule({payload}) {
       <Default cancel={false} title="✅" description="AGENDADO COM SUCESSO!!" />
     ));
   } catch (error) {
-    console.log(error);
     Modal.show(() => (
       <Default
         cancel={false}

@@ -3,12 +3,15 @@ import {ScrollView} from 'react-native';
 import {Header, Input, Separator, Button, Text} from '~components';
 import {Formik} from 'formik';
 import registerValidationSchema from './register';
+import {Creators} from '~store/reducers';
+import {useDispatch} from 'react-redux';
 
 import {Container, Content} from './styles';
 
 const Register = ({navigation}) => {
+  const dispatch = useDispatch();
   const submit = values => {
-    console.log(values);
+    dispatch(Creators.user.create.request({data: values}));
   };
 
   return (
@@ -28,21 +31,16 @@ const Register = ({navigation}) => {
                   Registro
                 </Text>
                 <Input label="Nome" name="name" returnKeyType="next" />
-                <Input label="CPF" name="cpf" />
+                <Input label="CPF" name="cpf" keyboardType="numeric" />
+                <Input
+                  label="Inscrição estadual"
+                  name="inscricao"
+                  keyboardType="numeric"
+                />
                 <Input label="Nome da Fazenda" name="farmName" />
                 <Input label="Municipio da Fazenda" name="cityFarmName" />
                 <Input label="Estado da Fazenda" name="stateFarmName" />
-                <Input
-                  label="Email"
-                  name="email"
-                  keyboardType="email-address"
-                />
-                <Input
-                  label="Senha"
-                  name="password"
-                  secureTextEntry
-                  returnKeyType="submit"
-                />
+                <Input label="Senha" name="password" secureTextEntry />
               </Content>
             </ScrollView>
             <Separator height="20" />

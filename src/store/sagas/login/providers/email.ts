@@ -1,16 +1,20 @@
-import axios from '~services/axios';
-import {call} from 'redux-saga/effects';
-import {getUniqueId} from 'react-native-device-info';
+import database from '@react-native-firebase/database';
 
-export default function* GetLogin({email, password}) {
-  const uniqueId = yield call(getUniqueId);
-  const {data: response} = yield call(
-    axios.get,
-    `/Autenticar/Autenticar?email=${email}&senha=${password}`,
-  );
-
-  if (response.error) {
-    throw new Error(response.error);
+export default function* GetLogin({inscricao, password}) {
+  try {
+    let data = {};
+    const response = yield database()
+      .ref('users/' + inscricao + password)
+      .once('value');
+    const res = yield response;
+    res.forEach(r => {
+      data = r.toJSON();
+    });
+    if (data.length) {
+      return yield response;
+    }
+  } catch (error) {
+    console.log(error);
   }
-  return yield response.User;
+  return undefined;
 }

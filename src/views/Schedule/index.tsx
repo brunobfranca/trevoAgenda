@@ -22,8 +22,6 @@ const Schedule = ({navigation}) => {
     }
   }, []);
 
-  console.log(schedules);
-
   return (
     <Container>
       <Header

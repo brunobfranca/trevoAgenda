@@ -16,8 +16,7 @@ const Login = ({navigation}) => {
   const dispatch = useDispatch();
 
   const submit = values => {
-    dispatch(Creators.user.get.success({response: values}));
-    console.log(values);
+    dispatch(Creators.login.request({data: values}));
   };
 
   return (
@@ -25,15 +24,13 @@ const Login = ({navigation}) => {
       <LogoContainer>
         <Logo source={require('./assets/trevo.jpeg')} />
       </LogoContainer>
-      <Formik
-        initialValues={{id: 3, email: '', password: '', type: 1}}
-        onSubmit={values => submit(values)}>
+      <Formik initialValues={{}} onSubmit={values => submit(values)}>
         {({handleChange, handleSubmit}) => (
           <>
             <Input
-              label="Email"
+              label="Inscrição estadual"
               returnKeyType="next"
-              onChangeText={handleChange('email')}
+              onChangeText={handleChange('inscricao')}
             />
             <Input
               label="Senha"
