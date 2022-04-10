@@ -1,56 +1,48 @@
 import React, {useContext, useState} from 'react';
-import {CancelTouchArea, CancelText, Container, Title, Input} from './styles';
+import {CancelTouchArea, CancelText, Container, Input} from './styles';
 import {Store, IModal} from '~components/Modal';
 import {Text, Button} from '~components';
-import DatePicker from 'react-native-datepicker';
-import moment from 'moment';
+import {Alert} from 'react-native';
+import * as modal from '~services/modal';
+import {Default} from '~modals';
+import {useDispatch} from 'react-redux';
 interface IDefaultModal {
-  title: string;
   isTomorrow?: boolean;
+  id: string;
   cancel?: boolean;
+  qnt: number;
 }
 
-export default function Component({
-  title,
-  isTomorrow,
-  cancel = true,
-}: IDefaultModal) {
+export default function Component({qnt, id, cancel = true}: IDefaultModal) {
   const {close} = useContext<IModal>(Store);
-  const [date, setDate] = useState('');
+  const [quant, setQuant] = useState(0);
+  const dispatch = useDispatch();
+
+  const client = '1';
+
+  const handleSubmit = () => {
+    if (quant > qnt) {
+      Alert.alert('Quantidade digitada maior que a quantidade disponível!!');
+      return;
+    }
+    if (quant == 0) {
+      Alert.alert('Quantidade deve ser maior que 0!!');
+      return;
+    }
+    dispatch({
+      type: 'schedules',
+      payload: {quant: quant, client: client, date: id},
+    });
+    dispatch({type: 'addAbate', payload: {quant: qnt - quant, id: id}});
+  };
+
   return (
     <Container>
-      <Title>{title}</Title>
       <Text size="large" color="primary">
-        Quantidade disponível: 80
+        Quantidade disponível: {qnt}
       </Text>
-      {!isTomorrow && (
-        <DatePicker
-          date={date}
-          mode="date"
-          placeholder="data inicial"
-          format="DD/MM/YYYY"
-          minDate={moment().subtract(10, 'years').format('DD/MM/YYYY')}
-          customStyles={{
-            dateIcon: {
-              position: 'absolute',
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-            },
-            dateInput: {
-              marginLeft: 36,
-            },
-            // ... You can check the source to find the other keys.
-          }}
-          onDateChange={date => {
-            setDate(date);
-          }}
-        />
-      )}
-      <Input label="Quantidade" />
-      <Button onPress={() => alert('chamada para possivel api')}>
-        Agendar
-      </Button>
+      <Input label="Quantidade" onChangeText={setQuant} />
+      <Button onPress={() => handleSubmit()}>Agendar</Button>
       {cancel && (
         <CancelTouchArea onPress={close}>
           <CancelText>Cancelar</CancelText>

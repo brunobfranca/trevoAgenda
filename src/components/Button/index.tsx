@@ -13,6 +13,7 @@ interface IButton {
   rect?: boolean;
   onLongPress?: () => void;
   delayLongPress?: number;
+  style?: object;
 }
 
 export default function Component(props: IButton) {

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Header, Button, Text, Separator, Row} from '~components';
 import {Container, Input, Content} from './styles';
-import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
@@ -68,9 +67,9 @@ const Schedule = ({navigation}) => {
           title="Selecione uma data"
           open={show}
           date={date}
-          onConfirm={date => {
+          onConfirm={dateSelected => {
             setShow(false);
-            setDate(date);
+            setDate(dateSelected);
           }}
           onCancel={() => {
             setShow(false);
