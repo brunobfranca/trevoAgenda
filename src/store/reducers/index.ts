@@ -3,6 +3,7 @@ import * as user from './user';
 import * as logout from './logout';
 import * as config from './config';
 import * as abates from './abates';
+import * as schedules from './schedules';
 import {combineReducers} from 'redux';
 import {StateType} from 'typesafe-actions';
 import reduceReducers from 'reduce-reducers';
@@ -13,6 +14,7 @@ export const Types = {
   ...logout.Types,
   ...config.Types,
   ...abates.Types,
+  ...schedules.Types,
 };
 
 export const Creators = {
@@ -21,6 +23,7 @@ export const Creators = {
   user: user.Creators,
   login: login.Creators,
   abates: abates.Creators,
+  schedules: schedules.Creators,
 };
 
 const Reducers = combineReducers({
@@ -28,6 +31,7 @@ const Reducers = combineReducers({
   user: user.default,
   config: config.default,
   abates: abates.default,
+  schedules: schedules.default,
 });
 
 export type RootReducer = StateType<typeof Reducers>;

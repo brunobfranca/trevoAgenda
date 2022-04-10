@@ -5,8 +5,16 @@ import logout from './logout';
 import addAbate from './addAbate';
 import loadAbates from './loadAbates';
 import schedules from './schedules';
-
+import loadSchedules from './loadSchedules';
 export default function* rootSaga() {
   // yield take(REHYDRATE); // Wait for store to be fully rehydrate
-  yield all([login, logout, ...user, addAbate, loadAbates, schedules]);
+  yield all([
+    login,
+    logout,
+    ...user,
+    addAbate,
+    loadAbates,
+    schedules,
+    loadSchedules,
+  ]);
 }

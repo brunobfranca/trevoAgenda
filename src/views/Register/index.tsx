@@ -25,7 +25,6 @@ const Register = ({navigation}) => {
                 </Text>
                 <Input label="Nome" name="name" />
                 <Input label="CPF" name="cpf" />
-                <Input label="Nome" name="stateRegistration" />
                 <Input label="Nome da Fazenda" name="farmName" />
                 <Input label="Municipio da Fazenda" name="cityFarmName" />
                 <Input label="Estado da Fazenda" name="stateFarmName" />
