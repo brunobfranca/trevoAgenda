@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from '~components';
 import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import {Container, BackButton} from './styles';
 
@@ -26,7 +26,7 @@ const Header = (props: IHeader) => {
                 routes: [{name: 'Home'}],
               })
         }>
-        <Icon name="bars" size={25} color={color} />
+        <Icon name="log-out" size={25} color={color} />
       </BackButton>
       <Text size="medium" color={textColor}>
         {props.title}

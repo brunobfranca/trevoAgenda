@@ -6,6 +6,7 @@ import addAbate from './addAbate';
 import loadAbates from './loadAbates';
 import schedules from './schedules';
 import loadSchedules from './loadSchedules';
+import loadSchedulesAdm from './loadSchedulesAdm';
 export default function* rootSaga() {
   // yield take(REHYDRATE); // Wait for store to be fully rehydrate
   yield all([
@@ -16,5 +17,6 @@ export default function* rootSaga() {
     loadAbates,
     schedules,
     loadSchedules,
+    loadSchedulesAdm,
   ]);
 }
