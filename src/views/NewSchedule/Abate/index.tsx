@@ -8,7 +8,10 @@ import {Container} from './styles';
 
 const Abate = ({item}) => {
   return (
-    <Container onPress={() => modal.show(() => <Schedule qnt={item.qnt} />)}>
+    <Container
+      onPress={() =>
+        modal.show(() => <Schedule qnt={item.qnt} id={item.id} />)
+      }>
       <Text size="large" color="primary">
         Data: {item.id}
       </Text>

@@ -26,7 +26,7 @@ const Login = ({navigation}) => {
         <Logo source={require('./assets/trevo.jpeg')} />
       </LogoContainer>
       <Formik
-        initialValues={{email: '', password: '', type: 1}}
+        initialValues={{id: 3, email: '', password: '', type: 1}}
         onSubmit={values => submit(values)}>
         {({handleChange, handleSubmit}) => (
           <>

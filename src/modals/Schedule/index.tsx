@@ -5,7 +5,8 @@ import {Text, Button} from '~components';
 import {Alert} from 'react-native';
 import * as modal from '~services/modal';
 import {Default} from '~modals';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {getUser} from '~store/selectors';
 interface IDefaultModal {
   isTomorrow?: boolean;
   id: string;
@@ -17,8 +18,9 @@ export default function Component({qnt, id, cancel = true}: IDefaultModal) {
   const {close} = useContext<IModal>(Store);
   const [quant, setQuant] = useState(0);
   const dispatch = useDispatch();
+  const user = useSelector(getUser);
 
-  const client = '1';
+  const client = user.id;
 
   const handleSubmit = () => {
     if (quant > qnt) {
@@ -31,9 +33,9 @@ export default function Component({qnt, id, cancel = true}: IDefaultModal) {
     }
     dispatch({
       type: 'schedules',
-      payload: {quant: quant, client: client, date: id},
+      payload: {quant: quant, client: client, date: id, availability: qnt},
     });
-    dispatch({type: 'addAbate', payload: {quant: qnt - quant, id: id}});
+    // dispatch({type: 'addAbate', payload: {quant: qnt - quant, id: id}});
   };
 
   return (

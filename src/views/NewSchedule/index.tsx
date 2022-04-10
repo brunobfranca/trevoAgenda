@@ -36,7 +36,12 @@ const Schedule = ({navigation}) => {
         Datas Disponíveis
       </Text>
       <Separator height="5" />
-      <List data={abates} renderItem={({item}) => <Abate item={item} />} />
+      <List
+        data={abates}
+        renderItem={({item}) => {
+          return <>{item.qnt > 0 && <Abate item={item} />}</>;
+        }}
+      />
       <Divider style={{height: 10, marginBottom: 10}} />
       <Content />
     </Container>
