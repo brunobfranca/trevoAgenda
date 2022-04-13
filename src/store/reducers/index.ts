@@ -5,6 +5,7 @@ import * as config from './config';
 import * as abates from './abates';
 import * as schedules from './schedules';
 import * as schedulesAdm from './schedulesAdm';
+import * as clients from './clients';
 import {combineReducers} from 'redux';
 import {StateType} from 'typesafe-actions';
 import reduceReducers from 'reduce-reducers';
@@ -17,6 +18,7 @@ export const Types = {
   ...abates.Types,
   ...schedules.Types,
   ...schedulesAdm.Types,
+  ...clients.Types,
 };
 
 export const Creators = {
@@ -27,6 +29,7 @@ export const Creators = {
   abates: abates.Creators,
   schedules: schedules.Creators,
   schedulesAdm: schedulesAdm.Creators,
+  clients: clients.Creators,
 };
 
 const Reducers = combineReducers({
@@ -35,6 +38,7 @@ const Reducers = combineReducers({
   config: config.default,
   abates: abates.default,
   schedulesAdm: schedulesAdm.default,
+  clients: clients.default,
 });
 
 export type RootReducer = StateType<typeof Reducers>;

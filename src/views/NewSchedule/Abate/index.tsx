@@ -6,12 +6,10 @@ import {Schedule} from '~modals';
 
 import {Container} from './styles';
 
-const Abate = ({item}) => {
+const Abate = ({item, navigation}) => {
+  //modal.show(() => <Schedule qnt={item.qnt} id={item.id} />
   return (
-    <Container
-      onPress={() =>
-        modal.show(() => <Schedule qnt={item.qnt} id={item.id} />)
-      }>
+    <Container onPress={() => navigation.navigate('Details', {item})}>
       <Text size="large" color="primary">
         Data: {item.id}
       </Text>

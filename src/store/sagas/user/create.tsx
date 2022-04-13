@@ -6,12 +6,33 @@ import {Default} from '~modals';
 import {ActionType} from 'typesafe-actions';
 import database from '@react-native-firebase/database';
 
+function* getProviders(inscricao) {
+  const response = database().ref('providers').once('value');
+  const data = [];
+  const res = yield response;
+  res.forEach(r => {
+    data.push(r.toJSON());
+  });
+  let filtro = data.filter(r => r.inscricao === inscricao);
+  console.log(filtro);
+  return filtro;
+}
 function* PostUser(props) {
   try {
-    props = {...props, id: Math.floor(new Date()), type: 1};
-    database()
-      .ref('users/' + props.inscricao + props.password)
-      .set(props);
+    props = {...props, id: Math.floor(new Date())};
+    const response = yield getProviders(props.inscricao);
+    console.log('response', response);
+    if (response.length > 0) {
+      throw new Error('erro');
+    }
+    database().ref('providers/').push(props);
+    Modal.show(() => (
+      <Default
+        cancel={false}
+        title="❌"
+        description="sucesso ao cadastrar fornecedor!!"
+      />
+    ));
     return props;
   } catch (error) {
     return Modal.show(() => (

@@ -6,7 +6,6 @@ import {Creators} from '~store/reducers/';
 export function* loadSchedules() {
   try {
     const response = database().ref('schedules').once('value');
-    const {id} = yield select(getUser);
     const data = [];
     const res = yield response;
     res.forEach(r => {
@@ -14,7 +13,7 @@ export function* loadSchedules() {
     });
     yield put(
       Creators.schedules.list.success({
-        response: data.filter(i => i.client == id),
+        response: data,
       }),
     );
   } catch (error) {

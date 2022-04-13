@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {Header, Text, Divider, Separator} from '~components';
 import database from '@react-native-firebase/database';
+import {Creators} from '~store/reducers/';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAbates} from '~store/selectors';
 import Abate from './Abate';
@@ -11,6 +12,10 @@ const Schedule = ({navigation}) => {
   const dispatch = useDispatch();
 
   const abates = useSelector(getAbates);
+
+  useEffect(() => {
+    dispatch(Creators.clients.list.request({}));
+  }, []);
 
   useEffect(() => {
     try {
@@ -39,7 +44,9 @@ const Schedule = ({navigation}) => {
       <List
         data={abates}
         renderItem={({item}) => {
-          return <>{item.qnt > 0 && <Abate item={item} />}</>;
+          return (
+            <>{item.qnt > 0 && <Abate item={item} navigation={navigation} />}</>
+          );
         }}
       />
       <Divider style={{height: 10, marginBottom: 10}} />

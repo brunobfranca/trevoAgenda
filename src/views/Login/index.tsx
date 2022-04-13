@@ -1,18 +1,12 @@
 import React from 'react';
-import {Button, Separator, Text} from '~components';
+import {Button, Separator} from '~components';
 import {useDispatch} from 'react-redux';
 import {Creators} from '~store/reducers';
 import {Formik} from 'formik';
 
-import {
-  Container,
-  Logo,
-  LogoContainer,
-  Input,
-  RegisterContainer,
-} from './styles';
+import {Container, Logo, LogoContainer, Input} from './styles';
 
-const Login = ({navigation}) => {
+const Login = () => {
   const dispatch = useDispatch();
 
   const submit = values => {
@@ -28,9 +22,9 @@ const Login = ({navigation}) => {
         {({handleChange, handleSubmit}) => (
           <>
             <Input
-              label="Inscrição estadual"
+              label="Usuário"
               returnKeyType="next"
-              onChangeText={handleChange('inscricao')}
+              onChangeText={handleChange('user')}
             />
             <Input
               label="Senha"
@@ -46,15 +40,6 @@ const Login = ({navigation}) => {
           </>
         )}
       </Formik>
-      <RegisterContainer>
-        <Separator height="20" />
-        <Text
-          underline
-          color="primary"
-          onPress={() => navigation.navigate('Register')}>
-          Cadastro
-        </Text>
-      </RegisterContainer>
     </Container>
   );
 };

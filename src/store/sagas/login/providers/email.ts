@@ -1,9 +1,9 @@
 import database from '@react-native-firebase/database';
 
-export default function* GetLogin({inscricao, password}) {
+export default function* GetLogin({user, password}) {
   try {
     const response = yield database()
-      .ref('users/' + inscricao + password)
+      .ref('users/' + user + password)
       .once('value');
 
     if (response.toJSON() !== null) {

@@ -1,13 +1,13 @@
 import * as yup from 'yup';
 import {isCPF} from 'brazilian-values';
 
-const WEAK_PASSWORD = 'Sua senha precisa conter ao menos 6 dígitos';
+// const WEAK_PASSWORD = 'Sua senha precisa conter ao menos 6 dígitos';
 
-const PasswordCheck = yup
-  .string()
-  .nullable()
-  .min(6, WEAK_PASSWORD)
-  .required('A senha é obrigatória!');
+// const PasswordCheck = yup
+//   .string()
+//   .nullable()
+//   .min(6, WEAK_PASSWORD)
+//   .required('A senha é obrigatória!');
 
 const NameCheck = yup.string().nullable().required('O nome é obrigatório!');
 const farmNameCheck = yup.string().nullable().required('O nome é obrigatório!');
@@ -47,7 +47,6 @@ const CpfCheck = yup
 
 const registerValidationSchema = yup.object().shape({
   name: NameCheck,
-  password: PasswordCheck,
   inscricao: inscricaoCheck,
   cpf: CpfCheck,
   farmName: farmNameCheck,

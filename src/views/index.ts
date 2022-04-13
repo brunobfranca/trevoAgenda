@@ -1,5 +1,8 @@
 export {default as Login} from './Login';
 export {default as Home} from './Home';
 export {default as Register} from './Register';
-export {default as Schedule} from './Schedule';
+export {default as Provider} from './Provider';
+export {default as Decrease} from './Decrease';
+export {default as Schedules} from './Schedules';
 export {default as NewSchedule} from './NewSchedule';
+export {default as DetailsNewSchedule} from './DetailsNewSchedule';

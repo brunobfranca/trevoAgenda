@@ -7,6 +7,8 @@ import loadAbates from './loadAbates';
 import schedules from './schedules';
 import loadSchedules from './loadSchedules';
 import loadSchedulesAdm from './loadSchedulesAdm';
+import loadClients from './loadClients';
+
 export default function* rootSaga() {
   // yield take(REHYDRATE); // Wait for store to be fully rehydrate
   yield all([
@@ -18,5 +20,6 @@ export default function* rootSaga() {
     schedules,
     loadSchedules,
     loadSchedulesAdm,
+    loadClients,
   ]);
 }

@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {View} from 'react-native';
 import {Header} from '~components';
 import database from '@react-native-firebase/database';
 import {useDispatch, useSelector} from 'react-redux';
@@ -24,14 +23,14 @@ const Schedules = ({navigation}) => {
   }, []);
 
   return (
-    <View>
+    <Container>
       <Header
         inverted
         onPress={() => navigation.goBack()}
         title="Agendamentos"
       />
       <List data={schedules} renderItem={({item}) => <Card item={item} />} />
-    </View>
+    </Container>
   );
 };
 
