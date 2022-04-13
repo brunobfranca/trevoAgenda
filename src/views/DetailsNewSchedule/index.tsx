@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {View, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {Header, Text, Button} from '~components';
+import {Header, Text, Button, Row, Separator} from '~components';
 import {getClients} from '~store/selectors';
 import {Creators} from '~store/reducers';
 import database from '@react-native-firebase/database';
@@ -48,13 +48,28 @@ const DetailsNewSchedule = ({navigation, route}) => {
             return <Picker.Item label={i.name} value={i} />;
           })}
         </Picker>
-        <Text style={{marginLeft: 10}} size="large" color="primary">
-          Quantidade disponível: {item.qnt}
+        <Row split>
+          <Text style={{marginLeft: 10}} size="large" color="primary">
+            Quantidade disponível:
+          </Text>
+          <View>
+            <Text style={{marginLeft: 10}} size="medium" color="primary">
+              BOI : {'   '}
+              {item.qnt}
+            </Text>
+            <Text style={{marginLeft: 10}} size="medium" color="primary">
+              VACA: {item.qnt}
+            </Text>
+          </View>
+        </Row>
+        <Separator height="20" />
+        <Text style={{marginLeft: 10}} size="medium" color="primary">
+          Digite a quantidade desejada:
         </Text>
-        <Text style={{marginLeft: 10}} size="large" color="primary">
-          Quantidade disponível: {item.qnt}
-        </Text>
-        <Input label="Quantidade" onChangeText={setQuant} />
+        <Row split>
+          <Input label="QNT. VACA" onChangeText={setQuant} />
+          <Input label="QNT. BOI" onChangeText={setQuant} />
+        </Row>
       </Content>
       <Button rect onPress={() => handleSubmit()}>
         Agendar

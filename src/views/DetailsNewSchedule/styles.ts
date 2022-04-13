@@ -15,6 +15,7 @@ export const Input = styled(TextInput).attrs({
 })`
   margin: 10px;
   font-size: 12px;
+  width: 45%;
   height: 60px;
   background: transparent;
 `;
