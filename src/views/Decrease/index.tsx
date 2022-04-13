@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {View} from 'react-native';
 import {Header, Button, Text, Separator, Row} from '~components';
 import {Container, Input, Content} from './styles';
 import {useDispatch} from 'react-redux';
@@ -10,12 +11,15 @@ import {Default} from '~modals';
 const Schedule = ({navigation}) => {
   const dispatch = useDispatch();
   const [qnt, setQnt] = useState('');
+  const [boi, setQuantBoi] = useState('');
+  const [vaca, setQuantVaca] = useState('');
   const [date, setDate] = useState(new Date(moment().add(1, 'days')));
   const [show, setShow] = useState(false);
   // moment(new Date()).format('DD-MM-YYYY')
 
   const handleSubmit = () => {
-    if (!qnt || qnt === '0') {
+    if (boi !== '0' || vaca !== '0') {
+    } else {
       Modal.show(() => (
         <Default
           cancel={false}
@@ -42,7 +46,10 @@ const Schedule = ({navigation}) => {
         title="Cadastrar Abate"
       />
       <Content>
-        <Input label="Quantidade" onChangeText={text => setQnt(text)} />
+        <Row split>
+          <Input label="QNT. VACA" onChangeText={setQuantBoi} />
+          <Input label="QNT. BOI" onChangeText={setQuantVaca} />
+        </Row>
         <Separator height="10" />
         <Row split>
           <Text
