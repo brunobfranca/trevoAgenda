@@ -43,7 +43,7 @@ const Schedule = ({navigation}) => {
         renderItem={({item}) => {
           return (
             <>
-              {item.boi + item.vaca > 0 && (
+              {Number(item.boi) + Number(item.vaca) > 0 && (
                 <Abate item={item} navigation={navigation} />
               )}
             </>

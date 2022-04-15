@@ -13,28 +13,30 @@ function* getProviders(inscricao) {
   res.forEach(r => {
     data.push(r.toJSON());
   });
-  let filtro = data.filter(r => r.inscricao === inscricao);
-  console.log(filtro);
+  let filtro = data.find(r => r.inscricao === inscricao);
   return filtro;
 }
-function* PostUser(props) {
+function* PostUser(props, navigation, edit) {
   try {
     props = {...props, id: Math.floor(new Date())};
-    const response = yield getProviders(props.inscricao);
-    console.log('response', response);
-    if (response.length > 0) {
-      throw new Error('erro');
+    if (!edit) {
+      const response = yield getProviders(props.inscricao);
+      if (response) {
+        throw new Error('erro');
+      }
     }
     database().ref('providers/').push(props);
     Modal.show(() => (
       <Default
         cancel={false}
+        buttons={[{id: 0, title: 'Ok', onPress: () => navigation.goBack()}]}
         title="❌"
         description="sucesso ao cadastrar fornecedor!!"
       />
     ));
     return props;
   } catch (error) {
+    console.log(error);
     return Modal.show(() => (
       <Default
         cancel={false}
@@ -47,9 +49,9 @@ function* PostUser(props) {
 
 type ICreateUserSaga = ActionType<typeof Creators.user.create.request>;
 
-function* PostUserSaga({payload: {data}}: ICreateUserSaga) {
+function* PostUserSaga({payload: {data, navigation, edit}}: ICreateUserSaga) {
   try {
-    const response = yield PostUser(data);
+    const response = yield PostUser(data, navigation, edit);
   } catch (err) {
     yield put(Creators.login.failure({error: err.message}));
     yield put(Creators.user.create.failure({error: err.message}));

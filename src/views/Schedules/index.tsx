@@ -6,6 +6,7 @@ import {getSchedulesAdm} from '~store/selectors';
 import {Container, List} from './styles';
 import {Alert} from 'react-native';
 import Card from './Card';
+import moment from 'moment';
 
 const Schedules = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,14 @@ const Schedules = () => {
   return (
     <Container>
       <Header inverted title="Agendamentos" />
-      <List data={schedules} renderItem={({item}) => <Card item={item} />} />
+      <List
+        data={schedules}
+        renderItem={({item}) => {
+          return (
+            item.id > moment().format('DD-MM-YYYY') && <Card item={item} />
+          );
+        }}
+      />
     </Container>
   );
 };

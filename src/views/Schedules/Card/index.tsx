@@ -10,7 +10,9 @@ const Card = ({item}) => {
       <Separator height="10" />
       <Text color="primary">Nome Cliente: {item.nameClient}</Text>
       <Separator height="10" />
-      <Text color="primary">Quantidade: {item.qnt} cabeças</Text>
+      <Text color="primary">
+        Quantidade: {Number(item.boiQ) + Number(item.vacaQ)} cabeças
+      </Text>
     </Container>
   );
 };

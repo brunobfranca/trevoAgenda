@@ -12,7 +12,7 @@ function* procurarAgendamento(client) {
     res.forEach(r => {
       data.push(r.toJSON());
     });
-    const filtro = data.filter(a => a.client === client);
+    const filtro = data.find(a => a.client === client);
     return filtro ? true : false;
   } catch (error) {
     console.log(error);
@@ -21,20 +21,20 @@ function* procurarAgendamento(client) {
 
 function* addSchedule({payload}) {
   try {
-    const {date, client, boi, vaca, boiq, vacaq} = payload;
+    const {date, client, boi, vaca, boiq, vacaq, navigation} = payload;
     const filtro = yield procurarAgendamento(client.id);
     if (filtro) {
       return Modal.show(() => (
         <Default
           cancel={false}
-          title="✅"
+          title="❌"
           description="Este fornecedor ja possuir agendamento para esta data!!"
         />
       ));
     }
     database()
       .ref('abate/' + date)
-      .set({
+      .update({
         id: date,
         boi: boiq - boi,
         vaca: vacaq - vaca,
@@ -49,7 +49,12 @@ function* addSchedule({payload}) {
         nameClient: client.name,
       });
     Modal.show(() => (
-      <Default cancel={false} title="✅" description="AGENDADO COM SUCESSO!!" />
+      <Default
+        buttons={[{id: 0, title: 'Ok', onPress: () => navigation.goBack()}]}
+        cancel={false}
+        title="✅"
+        description="AGENDADO COM SUCESSO!!"
+      />
     ));
   } catch (error) {
     console.log(error);

@@ -15,7 +15,7 @@ const Abate = ({item, navigation}) => {
       </Text>
       <Separator height="5" />
       <Text size="large" color="primary">
-        Quantidade Disponível: {item.boi + item.vaca}
+        Quantidade Disponível: {Number(item.boi) + Number(item.vaca)}
       </Text>
     </Container>
   );

@@ -2,27 +2,35 @@ import React from 'react';
 import {ScrollView} from 'react-native';
 import {Header, Input, Separator, Button} from '~components';
 import {Formik} from 'formik';
-import registerValidationSchema from './register';
+import registerValidationSchema from './registerValidation';
 import {Creators} from '~store/reducers';
 import {useDispatch} from 'react-redux';
 
 import {Container, Content} from './styles';
 
-const Register = () => {
+const Register = ({navigation, route}) => {
+  const item = route?.params?.item;
   const dispatch = useDispatch();
   const submit = values => {
-    dispatch(Creators.user.create.request({data: values}));
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{name: 'Home'}],
-    // });
+    dispatch(
+      Creators.user.create.request({
+        data: values,
+        navigation: navigation,
+        edit: item ? true : false,
+      }),
+    );
   };
 
   return (
     <Container>
-      <Header title="Cadastrar fornecedor" inverted />
+      <Header
+        title="Cadastrar fornecedor"
+        inverted
+        isDrawer
+        onPress={() => navigation.goBack()}
+      />
       <Formik
-        initialValues={{email: '', password: '', name: '', cpf: ''}}
+        initialValues={item}
         validateOnBlur={false}
         validateOnChange={false}
         validationSchema={registerValidationSchema}

@@ -3,8 +3,6 @@ import {View, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Header, Text, Button, Row, Separator} from '~components';
 import {getClients} from '~store/selectors';
-import {Creators} from '~store/reducers';
-import database from '@react-native-firebase/database';
 import {Picker} from '@react-native-picker/picker';
 import {Container, Content, Input} from './styles';
 
@@ -43,6 +41,7 @@ const DetailsNewSchedule = ({navigation, route}) => {
         date: item.id,
         boiq: item.boi,
         vacaq: item.vaca,
+        navigation: navigation,
       },
     });
     // dispatch({type: 'addAbate', payload: {quant: qnt - quant, id: id}});
