@@ -16,6 +16,7 @@ const Register = ({navigation}) => {
     return Modal.show(() => (
       <Default
         title="✅"
+        cancel={false}
         description="cadastrado com sucesso!!"
         buttons={[
           {id: 0, title: 'Ok', onPress: () => navigation.navigate('Home')},
