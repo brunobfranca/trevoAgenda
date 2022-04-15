@@ -6,15 +6,11 @@ import {getClients} from '~store/selectors';
 import {Picker} from '@react-native-picker/picker';
 import {Container, Content, Input} from './styles';
 
-interface IClient {
-  name?: string;
-}
-
 const DetailsNewSchedule = ({navigation, route}) => {
   const {item} = route.params;
   const [boi, setQuantBoi] = useState(0);
   const [vaca, setQuantVaca] = useState(0);
-  const [client, setClient] = useState<IClient>(-1);
+  const [client, setClient] = useState<any>(-1);
   const clients = useSelector(getClients);
   const dispatch = useDispatch();
 
