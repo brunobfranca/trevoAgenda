@@ -218,6 +218,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('trevo.keystore')
+            storePassword '123456'
+            keyAlias 'trevo'
+            keyPassword '123456'
+        }
     }
     buildTypes {
         debug {
