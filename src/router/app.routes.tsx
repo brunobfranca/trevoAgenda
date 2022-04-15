@@ -1,8 +1,11 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import * as Views from '../views';
+import {useSelector} from 'react-redux';
+import {getUser} from '~store/selectors';
 
-const App = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 const NewScheduleNav = createNativeStackNavigator();
 
 function NewScheduleNavigation() {
@@ -16,17 +19,61 @@ function NewScheduleNavigation() {
     </NewScheduleNav.Navigator>
   );
 }
-
 function Component() {
+  const user = useSelector(getUser);
+
   return (
-    <App.Navigator screenOptions={{headerShown: false}}>
-      <App.Screen name="Home" component={Views.Home} />
-      <App.Screen name="Schedules" component={Views.Schedules} />
-      <App.Screen name="NewSchedule" component={NewScheduleNavigation} />
-      <App.Screen name="Decrease" component={Views.Decrease} />
-      <App.Screen name="Provider" component={Views.Provider} />
-      <App.Screen name="Register" component={Views.Register} />
-    </App.Navigator>
+    <Drawer.Navigator
+      drawerContent={props => <Views.Menu {...props} />}
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+        // drawerInactiveTintColor: active,
+        // drawerActiveTintColor: '#283C64',
+      }}>
+      <Drawer.Screen
+        name="Home"
+        options={{
+          drawerLabel: 'Agendamentos',
+          // drawerIcon: Icons.Home,
+        }}
+        component={Views.Schedules}
+      />
+      <Drawer.Screen
+        name="NewSchedule"
+        options={{
+          drawerLabel: 'Novo Agendamento',
+          // drawerIcon: Icons.Referral,
+        }}
+        component={NewScheduleNavigation}
+      />
+      {user.type === 2 && (
+        <Drawer.Screen
+          name="Decrease"
+          options={{
+            drawerLabel: 'Cadastrar abate',
+            // drawerIcon: Icons.Shopper,
+          }}
+          component={Views.Decrease}
+        />
+      )}
+      <Drawer.Screen
+        name="Provider"
+        options={{
+          drawerLabel: 'Cadastrar Fornecedor',
+          // drawerIcon: Icons.Supporte,
+        }}
+        component={Views.Provider}
+      />
+      <Drawer.Screen
+        name="Register"
+        options={{
+          drawerLabel: 'Cadastrar usuário',
+          // drawerIcon: Icons.Supporte,
+        }}
+        component={Views.Register}
+      />
+    </Drawer.Navigator>
   );
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+// import {View} from 'react-native';
 import {Text, Separator} from '~components';
-import * as modal from '~services/modal';
-import {Schedule} from '~modals';
+// import * as modal from '~services/modal';
+// import {Schedule} from '~modals';
 
 import {Container} from './styles';
 

@@ -7,13 +7,14 @@ import moment from 'moment';
 
 function* addAbate({payload}) {
   try {
-    const {date, qnt} = payload;
+    const {date, boi, vaca} = payload;
     let id = moment(date).format('DD-MM-YYYY');
     database()
       .ref('abate/' + id)
       .set({
         id: id,
-        qnt: qnt,
+        boi: boi,
+        vaca: vaca,
       });
     Modal.show(() => (
       <Default

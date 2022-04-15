@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
 import {Header, Button, Text, Separator, Row} from '~components';
 import {Container, Input, Content} from './styles';
 import {useDispatch} from 'react-redux';
@@ -8,9 +7,8 @@ import moment from 'moment';
 import * as Modal from '~services/modal';
 import {Default} from '~modals';
 
-const Schedule = ({navigation}) => {
+const Schedule = () => {
   const dispatch = useDispatch();
-  const [qnt, setQnt] = useState('');
   const [boi, setQuantBoi] = useState('');
   const [vaca, setQuantVaca] = useState('');
   const [date, setDate] = useState(new Date(moment().add(1, 'days')));
@@ -35,16 +33,12 @@ const Schedule = ({navigation}) => {
       ));
       return 0;
     }
-    dispatch({type: 'addAbate', payload: {qnt: qnt, date: date}});
+    dispatch({type: 'addAbate', payload: {boi, vaca, date: date}});
   };
 
   return (
     <Container>
-      <Header
-        inverted
-        onPress={() => navigation.goBack()}
-        title="Cadastrar Abate"
-      />
+      <Header inverted title="Cadastrar Abate" />
       <Content>
         <Row split>
           <Input label="QNT. VACA" onChangeText={setQuantBoi} />

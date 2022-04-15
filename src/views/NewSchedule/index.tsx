@@ -15,7 +15,7 @@ const Schedule = ({navigation}) => {
 
   useEffect(() => {
     dispatch(Creators.clients.list.request({}));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     try {
@@ -27,15 +27,11 @@ const Schedule = ({navigation}) => {
     } catch (error) {
       alert('erro ao buscar dados');
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>
-      <Header
-        inverted
-        onPress={() => navigation.goBack()}
-        title="Novo Agendamento"
-      />
+      <Header inverted title="Novo Agendamento" />
       <Separator height="10" />
       <Text center size="large" color="primary">
         Datas Disponíveis

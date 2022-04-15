@@ -4,9 +4,10 @@ import database from '@react-native-firebase/database';
 import {useDispatch, useSelector} from 'react-redux';
 import {getSchedulesAdm} from '~store/selectors';
 import {Container, List} from './styles';
+import {Alert} from 'react-native';
 import Card from './Card';
 
-const Schedules = ({navigation}) => {
+const Schedules = () => {
   const dispatch = useDispatch();
   const schedules = useSelector(getSchedulesAdm);
 
@@ -18,17 +19,13 @@ const Schedules = ({navigation}) => {
           dispatch({type: 'loadSchedulesAdm'});
         });
     } catch (error) {
-      alert('erro ao buscar dados');
+      Alert.alert('erro ao buscar dados');
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>
-      <Header
-        inverted
-        onPress={() => navigation.goBack()}
-        title="Agendamentos"
-      />
+      <Header inverted title="Agendamentos" />
       <List data={schedules} renderItem={({item}) => <Card item={item} />} />
     </Container>
   );

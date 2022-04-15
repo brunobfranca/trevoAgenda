@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-import {Header, Input, Separator, Button, Text} from '~components';
+import {Header, Input, Separator, Button} from '~components';
 import {Formik} from 'formik';
 import registerValidationSchema from './register';
 import {Creators} from '~store/reducers';
@@ -8,7 +8,7 @@ import {useDispatch} from 'react-redux';
 
 import {Container, Content} from './styles';
 
-const Register = ({navigation}) => {
+const Register = () => {
   const dispatch = useDispatch();
   const submit = values => {
     dispatch(Creators.user.create.request({data: values}));
@@ -20,11 +20,7 @@ const Register = ({navigation}) => {
 
   return (
     <Container>
-      <Header
-        title="Cadastrar fornecedor"
-        inverted
-        onPress={() => navigation.goBack()}
-      />
+      <Header title="Cadastrar fornecedor" inverted />
       <Formik
         initialValues={{email: '', password: '', name: '', cpf: ''}}
         validateOnBlur={false}

@@ -8,9 +8,15 @@ import database from '@react-native-firebase/database';
 import {Picker} from '@react-native-picker/picker';
 import {Container, Content, Input} from './styles';
 
+interface IClient {
+  name?: string;
+}
+
 const DetailsNewSchedule = ({navigation, route}) => {
   const [quant, setQuant] = useState(0);
-  const [client, setClient] = useState({});
+  const [boi, setQuantBoi] = useState(0);
+  const [vaca, setQuantVaca] = useState(0);
+  const [client, setClient] = useState<IClient>({});
   const clients = useSelector(getClients);
   const dispatch = useDispatch();
 
@@ -27,7 +33,9 @@ const DetailsNewSchedule = ({navigation, route}) => {
       type: 'schedules',
       payload: {
         quant: quant,
-        client: client,
+        client: client.name,
+        boi,
+        vaca,
         date: item.id,
         availability: item.qnt,
       },
@@ -37,7 +45,12 @@ const DetailsNewSchedule = ({navigation, route}) => {
   const {item} = route.params;
   return (
     <Container>
-      <Header inverted onPress={() => navigation.goBack()} title="Detalhes" />
+      <Header
+        inverted
+        onPress={() => navigation.goBack()}
+        title="Detalhes"
+        isDrawer
+      />
       <Content>
         <Picker
           selectedValue={client}
@@ -67,8 +80,8 @@ const DetailsNewSchedule = ({navigation, route}) => {
           Digite a quantidade desejada:
         </Text>
         <Row split>
-          <Input label="QNT. VACA" onChangeText={setQuant} />
-          <Input label="QNT. BOI" onChangeText={setQuant} />
+          <Input label="QNT. VACA" onChangeText={setQuantBoi} />
+          <Input label="QNT. BOI" onChangeText={setQuantVaca} />
         </Row>
       </Content>
       <Button rect onPress={() => handleSubmit()}>

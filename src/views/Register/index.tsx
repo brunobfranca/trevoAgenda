@@ -6,7 +6,7 @@ import {Formik} from 'formik';
 
 import {Container, Content} from './styles';
 
-const Register = ({navigation}) => {
+const Register = () => {
   const registerAdm = values => {
     database()
       .ref('users/' + values.userName + values.password)
@@ -15,11 +15,7 @@ const Register = ({navigation}) => {
 
   return (
     <Container>
-      <Header
-        inverted
-        onPress={() => navigation.goBack()}
-        title="Cadastro Administrativo"
-      />
+      <Header inverted title="Cadastro Administrativo" />
       <Formik
         initialValues={{}}
         validateOnBlur={false}
