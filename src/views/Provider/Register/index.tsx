@@ -30,7 +30,7 @@ const Register = ({navigation, route}) => {
         onPress={() => navigation.goBack()}
       />
       <Formik
-        initialValues={item}
+        initialValues={item ? item : {}}
         validateOnBlur={false}
         validateOnChange={false}
         validationSchema={registerValidationSchema}
