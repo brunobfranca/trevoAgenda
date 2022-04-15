@@ -3,14 +3,25 @@ import {ScrollView} from 'react-native';
 import database from '@react-native-firebase/database';
 import {Input, Separator, Button, Header} from '~components';
 import {Formik} from 'formik';
+import * as Modal from '~services/modal';
+import {Default} from '~modals';
 
 import {Container, Content} from './styles';
 
-const Register = () => {
+const Register = ({navigation}) => {
   const registerAdm = values => {
     database()
       .ref('users/' + values.userName + values.password)
       .set({...values, type: 1});
+    return Modal.show(() => (
+      <Default
+        title="✅"
+        description="cadastrado com sucesso!!"
+        buttons={[
+          {id: 0, title: 'Ok', onPress: () => navigation.navigate('Home')},
+        ]}
+      />
+    ));
   };
 
   return (
@@ -26,7 +37,7 @@ const Register = () => {
             <ScrollView>
               <Content>
                 <Separator height="10" />
-                <Input label="Nome" name="name" returnKeyType="next" />
+                <Input label="Nome" name="userName" returnKeyType="next" />
                 <Input label="Senha" name="password" secureTextEntry />
               </Content>
             </ScrollView>

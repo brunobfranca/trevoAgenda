@@ -30,7 +30,7 @@ function* PostUser(props, navigation, edit) {
       <Default
         cancel={false}
         buttons={[{id: 0, title: 'Ok', onPress: () => navigation.goBack()}]}
-        title="❌"
+        title="✅"
         description="sucesso ao cadastrar fornecedor!!"
       />
     ));
