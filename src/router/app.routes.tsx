@@ -24,10 +24,13 @@ function Component() {
 
   return (
     <Drawer.Navigator
+      detachInactiveScreens={false}
       drawerContent={props => <Views.Menu {...props} />}
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
+        swipeEnabled: false,
+        unmountOnBlur: true,
         // drawerInactiveTintColor: active,
         // drawerActiveTintColor: '#283C64',
       }}>

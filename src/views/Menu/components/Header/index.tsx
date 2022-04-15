@@ -8,7 +8,7 @@ const Header = ({navigation}) => {
       <ViewLogo>
         <Logo source={require('~images/logo.jpeg')} />
         <Close onPress={() => navigation.closeDrawer()}>
-          <Text size="large" bold>
+          <Text color="primary" size="large" bold>
             X
           </Text>
         </Close>

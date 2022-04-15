@@ -6,7 +6,7 @@ export const Container = styled.View`
 `;
 export const ViewLogo = styled.View`
   flex-direction: row;
-  height: 100%;
+  height: 90%;
   padding: 8px;
   justify-content: space-between;
   background: ${props => props.theme.colors.title};

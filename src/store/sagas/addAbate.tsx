@@ -15,6 +15,8 @@ function* addAbate({payload}) {
         id: id,
         boi: boi,
         vaca: vaca,
+        boiD: boi,
+        vacaD: vaca,
       });
     Modal.show(() => (
       <Default

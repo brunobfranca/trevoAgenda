@@ -4,9 +4,10 @@ import database from '@react-native-firebase/database';
 import {Creators} from '~store/reducers/';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAbates} from '~store/selectors';
+import {Alert} from 'react-native';
 import Abate from './Abate';
 
-import {Container, Content, List} from './styles';
+import {Container, List} from './styles';
 
 const Schedule = ({navigation}) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Schedule = ({navigation}) => {
           dispatch({type: 'loadAbates'});
         });
     } catch (error) {
-      alert('erro ao buscar dados');
+      Alert.alert('erro ao buscar dados');
     }
   }, [dispatch]);
 
@@ -41,12 +42,15 @@ const Schedule = ({navigation}) => {
         data={abates}
         renderItem={({item}) => {
           return (
-            <>{item.qnt > 0 && <Abate item={item} navigation={navigation} />}</>
+            <>
+              {item.boi + item.vaca > 0 && (
+                <Abate item={item} navigation={navigation} />
+              )}
+            </>
           );
         }}
       />
-      <Divider style={{height: 10, marginBottom: 10}} />
-      <Content />
+      <Divider />
     </Container>
   );
 };

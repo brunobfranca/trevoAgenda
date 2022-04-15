@@ -13,36 +13,40 @@ interface IClient {
 }
 
 const DetailsNewSchedule = ({navigation, route}) => {
-  const [quant, setQuant] = useState(0);
+  const {item} = route.params;
   const [boi, setQuantBoi] = useState(0);
   const [vaca, setQuantVaca] = useState(0);
-  const [client, setClient] = useState<IClient>({});
+  const [client, setClient] = useState<IClient>(-1);
   const clients = useSelector(getClients);
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    if (quant > item.qnt) {
+    console.log(client === {});
+    if (client === -1) {
+      Alert.alert('Escolha um fornecedor');
+      return;
+    }
+    if (boi > item.boi || vaca > item.vaca) {
       Alert.alert('Quantidade digitada maior que a quantidade disponível!!');
       return;
     }
-    if (quant == 0) {
+    if (boi == 0 && vaca == 0) {
       Alert.alert('Quantidade deve ser maior que 0!!');
       return;
     }
     dispatch({
       type: 'schedules',
       payload: {
-        quant: quant,
-        client: client.name,
+        client: client,
         boi,
         vaca,
         date: item.id,
-        availability: item.qnt,
+        boiq: item.boi,
+        vacaq: item.vaca,
       },
     });
     // dispatch({type: 'addAbate', payload: {quant: qnt - quant, id: id}});
   };
-  const {item} = route.params;
   return (
     <Container>
       <Header
@@ -55,7 +59,7 @@ const DetailsNewSchedule = ({navigation, route}) => {
         <Picker
           selectedValue={client}
           mode="dropdown"
-          onValueChange={(itemValue, itemIndex) => setClient(itemValue)}>
+          onValueChange={itemValue => setClient(itemValue)}>
           <Picker.Item label="Escolha 1 fornecedor" value={-1} />
           {clients.map(i => {
             return <Picker.Item label={i.name} value={i} />;
@@ -67,11 +71,11 @@ const DetailsNewSchedule = ({navigation, route}) => {
           </Text>
           <View>
             <Text style={{marginLeft: 10}} size="medium" color="primary">
-              BOI : {'   '}
-              {item.qnt}
+              BOI : {'  '}
+              {item.boi}
             </Text>
             <Text style={{marginLeft: 10}} size="medium" color="primary">
-              VACA: {item.qnt}
+              VACA: {item.vaca}
             </Text>
           </View>
         </Row>
@@ -80,8 +84,8 @@ const DetailsNewSchedule = ({navigation, route}) => {
           Digite a quantidade desejada:
         </Text>
         <Row split>
-          <Input label="QNT. VACA" onChangeText={setQuantBoi} />
-          <Input label="QNT. BOI" onChangeText={setQuantVaca} />
+          <Input label="QNT. VACA" onChangeText={setQuantVaca} />
+          <Input label="QNT. BOI" onChangeText={setQuantBoi} />
         </Row>
       </Content>
       <Button rect onPress={() => handleSubmit()}>
