@@ -1,18 +1,23 @@
 import React from 'react';
-import {Text, Separator} from '~components';
+import {View} from 'react-native';
+import {Text, Separator, Row} from '~components';
 
 import {Container} from './styles';
 
 const Card = ({item}) => {
+  console.log('>>>>>>', item);
   return (
     <Container>
-      <Text color="primary">Data Agendamento: {item.id}</Text>
-      <Separator height="10" />
-      <Text color="primary">Nome Cliente: {item.nameClient}</Text>
-      <Separator height="10" />
-      <Text color="primary">
-        Quantidade: {Number(item.boiQ) + Number(item.vacaQ)} cabeças
-      </Text>
+      <Row split>
+        <Text color="primary">{item.nameClient}</Text>
+        <View>
+          <Text color="primary">
+            BOI : {'  '}
+            {item.boiQ} cabeças
+          </Text>
+          <Text color="primary">VACA: {item.vacaQ} cabeças</Text>
+        </View>
+      </Row>
     </Container>
   );
 };
