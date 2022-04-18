@@ -13,7 +13,7 @@ function* procurarAbate(client) {
     res.forEach(r => {
       data.push(r.toJSON());
     });
-    const filtro = data.find(a => a.client === client);
+    const filtro = data.find(a => a.id === client);
     return filtro ? true : false;
   } catch (error) {
     console.log(error);
@@ -24,13 +24,13 @@ function* addAbate({payload}) {
   try {
     const {date, boi, vaca} = payload;
     let id = moment(date).format('DD-MM-YYYY');
-    const filtro = yield procurarAbate(date);
+    const filtro = yield procurarAbate(id);
     if (filtro) {
       return Modal.show(() => (
         <Default
           cancel={false}
           title="❌"
-          description="Este fornecedor ja possuir agendamento para esta data!!"
+          description="Existe um abate cadastrado nessa data!"
         />
       ));
     }

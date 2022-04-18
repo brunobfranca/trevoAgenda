@@ -36,11 +36,16 @@ const Schedules = () => {
         .ref('abate/' + moment(filter).format('DD-MM-YYYY'))
         .once('value');
       const value = res.toJSON();
-      setTotais(
-        Number(value.boiD) +
-          Number(value.vacaD) -
-          (Number(value.boi) + Number(value.vaca)),
-      );
+      if (value) {
+        setTotais(
+          Number(value.boiD) +
+            Number(value.vacaD) -
+            (Number(value.boi) + Number(value.vaca)),
+        );
+      } else {
+        setTotais(0);
+        setNewArray([]);
+      }
       setNewArray(
         schedules.filter(
           sched => sched.id === moment(filter).format('DD-MM-YYYY'),
@@ -86,7 +91,7 @@ const Schedules = () => {
           }}
         />
         <Separator height="10" />
-        {newArray && (
+        {newArray.length > 0 && (
           <View style={{borderWidth: 1, borderRadius: 5, padding: 5}}>
             <List
               data={newArray}
@@ -97,7 +102,7 @@ const Schedules = () => {
           </View>
         )}
         <Separator height="5" />
-        {newArray && (
+        {newArray.length > 0 && (
           <Text center color="primary">
             Total : {totais} cabeças
           </Text>

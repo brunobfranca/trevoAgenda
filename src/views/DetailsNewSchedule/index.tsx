@@ -20,7 +20,7 @@ const DetailsNewSchedule = ({navigation, route}) => {
       Alert.alert('Escolha um fornecedor');
       return;
     }
-    if (boi > item.boi || vaca > item.vaca) {
+    if (Number(boi) > Number(item.boi) || Number(vaca) > Number(item.vaca)) {
       Alert.alert('Quantidade digitada maior que a quantidade disponível!!');
       return;
     }
